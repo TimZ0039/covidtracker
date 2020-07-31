@@ -1,19 +1,18 @@
 package tim.project.covidtracker.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloWorldController {
-    @RequestMapping("/hello")
-    public String helloWorld(){
-        return "hello world";
+    @RequestMapping("/add")
+    public int sum (@RequestParam(defaultValue = "0") int a,@RequestParam(defaultValue = "0") int b){
+        return a+b;
     }
-//    @RequestMapping("/error")
-//    public String error(){
-//     return "you have encountered an error";
-//    }
+    @RequestMapping("/hello")
+    public String helloWorld(@RequestParam(defaultValue = "world") String name) {
+        return "hello " + name;
+    }
+
 
 }
