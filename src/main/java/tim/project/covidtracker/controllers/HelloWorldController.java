@@ -1,6 +1,7 @@
 package tim.project.covidtracker.controllers;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class HelloWorldController {
@@ -23,6 +24,13 @@ public class HelloWorldController {
         output.b = input.b;
         output.answer = input.a * input.b;
         return output;
+    }
+    @GetMapping("/test")
+    public String test(@RequestParam(defaultValue = "ca") String states){
+        String url = "https://api.covidtracking.com/v1/states/" + states + "/current.json";
+        RestTemplate covidState = new RestTemplate();
+        String result = covidState.getForObject(url,String.class);
+        return result;
     }
 
 }
