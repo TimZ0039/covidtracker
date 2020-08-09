@@ -25,12 +25,12 @@ public class HelloWorldController {
         output.answer = input.a * input.b;
         return output;
     }
-    @GetMapping("/test")
-    public String test(@RequestParam(defaultValue = "ca") String states){
+    @GetMapping("/covid-positive")
+    public int covidPositive(@RequestParam(defaultValue = "ca") String states){
         String url = "https://api.covidtracking.com/v1/states/" + states + "/current.json";
         RestTemplate covidState = new RestTemplate();
-        String result = covidState.getForObject(url,String.class);
-        return result;
+        CovidStats result = covidState.getForObject(url,CovidStats.class);
+        return result.positive;
     }
 
 }
