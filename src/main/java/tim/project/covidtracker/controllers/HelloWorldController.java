@@ -25,6 +25,7 @@ public class HelloWorldController {
         output.answer = input.a * input.b;
         return output;
     }
+    @CrossOrigin
     @GetMapping("/covid-positive")
     public CovidStatsOutput covidPositive(@RequestParam(defaultValue = "ca") String states){
         String url = "https://api.covidtracking.com/v1/states/" + states + "/current.json";
